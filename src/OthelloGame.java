@@ -1,4 +1,5 @@
 
+// TODO rewrite comment (english)
 /**
  * @author bechari
  * @author lapchik
@@ -7,11 +8,14 @@
  */
 /**
  * 
- * @explication Crée une nouvelle partie d'Othello
+ * Crï¿½e une nouvelle partie d'Othello
  *
  */
 public class OthelloGame 
 {
+	
+	// TODO rewrite comment (english)
+	// TODO fix comment (the constructor displays nothing
 	/**
 	 * affiche le plateau et place les pions
 	 */
@@ -19,7 +23,8 @@ public class OthelloGame
 		{
 			
 		}
-		
+
+	// TODO write comment, describe main algorithm		
 	public void play()
 		{
 		
