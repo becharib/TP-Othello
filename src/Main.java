@@ -1,4 +1,4 @@
-// TOO update README.md (in english)
+// TODO update README.md (in english)
 
 // TODO fix comment 
 /**
