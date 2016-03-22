@@ -1,6 +1,8 @@
+
 // TODO(done) update README.md (in english)
 
 // TODO(done) fix comment 
+
 /**
  * 
  * @author bechari
@@ -8,7 +10,6 @@
  *
  */
 public class Main {
-	
 	// TODO(done) write comment
 	/**
 	 * launch a new game
