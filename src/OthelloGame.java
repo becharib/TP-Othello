@@ -17,7 +17,8 @@ public class OthelloGame
 	 */
 	public OthelloGame()
 		{
-			board = new Board;
+		new Board();
+		
 		}
 
 	// TODO (done) write comment, describe main algorithm		

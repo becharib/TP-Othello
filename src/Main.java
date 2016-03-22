@@ -10,12 +10,16 @@
  *
  */
 public class Main {
+	
+
 	// TODO(done) write comment
 	/**
 	 * launch a new game
 	 */
 	public static void main(String[] args) 
 	{
+		Pawn[][] gameBoard = new Pawn[7][7];
 		new OthelloGame().play();
+		
 	}
 }
