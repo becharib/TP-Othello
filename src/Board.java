@@ -28,48 +28,55 @@ public class Board
 {
 
 	/**
-	 * default width
-	 */
-	
-	private static final int DEFAULT_WIDTH = 8;
-	
-	/**
-	 * default length
-	 */
-	
-	private static final int DEFAULT_LENGTH = 8;
-	
-	/**
 	 * the value of an empty checkbox 
 	 */
-	
-	private final static int EMPTY_CHECKBOX = 0;
+	private static final int EMPTY = 0;
 	
 	/**
 	 * the value of a checkbox with a white pawn
 	 */
 	
-	private final static int WHITE_PAWN = 1;
+	private static final int WHITE = 1;
 	
 	/**
-	 * the value of a chekcbox with a black pawn
+	 * the value of a checkbox with a black pawn
 	 */
 	
-	private final static int BLACK_PAWN = 2;
+	private static final int BLACK = 2;
+	
+	
+	
+	/**
+	 * default size of the board
+	 */
+	
+	private static final int DEFAULT_SIZE = 8;
+	
 	
 	/**
 	 * a 2 dimensional table
 	 */
 	
-	private int[][] newBoards;
+	final static int Game[][] = new int[DEFAULT_SIZE][DEFAULT_SIZE];
 
 	
 	/**
-	 * Create the table
+	 * Create a new game Board, in its default configuration
 	 */
 	public Board() 
 	{
-		this.newBoards = new Board[DEFAULT_LENGTH][DEFAULT_WIDTH];
+		for (int i=1; i<DEFAULT_SIZE; i++)       
+	         for (int j=1; j<DEFAULT_SIZE; j++)
+	            Game[i][j] = EMPTY;
+
+		
+		 Game[4][4] = WHITE;          
+	     Game[5][4] = BLACK;
+	     Game[4][5] = BLACK;
+	     Game[5][5] = WHITE;
+	     
+	     
+	     
 		
 	}
 }
