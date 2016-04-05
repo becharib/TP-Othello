@@ -64,7 +64,35 @@ public class OthelloGame {
 	 * 
 	 * <ask current player to choose a cell> -> on demande au joueur de jouer et on renvoie des coordonnées
 	 */
-	public void play() {
+	public void play() 
+	{
+	while (!this.gameOver())
+	{
+	}	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 
+	private boolean gameOver() 
+	{
+		if (this.board.notfull() && !blackPlayer.canPlay() && !whitePlayer.canPlay() )
+			return true;
+		return false;
+			
 	}
 }
