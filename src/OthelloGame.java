@@ -7,22 +7,7 @@
  */
 public class OthelloGame {
 
-	/**
-	 * the value of an empty cell
-	 */
-	private static final int EMPTY = 0;
 
-	/**
-	 * the value of a cell with a white pawn
-	 */
-
-	private static final int WHITE = 1;
-
-	/**
-	 * the value of a cell with a black pawn
-	 */
-
-	private static final int BLACK = 2;
 
 	/**
 	 * Game board
