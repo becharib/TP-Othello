@@ -25,9 +25,9 @@ public class OthelloGame {
 	public OthelloGame() 
 	{
 		this.board = new Board();
-		this.blackPlayer = new Player();
-		this.whitePlayer = new Player();
-
+		this.blackPlayer = new Player("BLACK");
+		this.whitePlayer = new Player("WHITE");
+		
 	}
 
 	/**
@@ -53,20 +53,8 @@ public class OthelloGame {
 	{
 	while (!this.gameOver())
 	{
+		
 	}	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
@@ -75,7 +63,7 @@ public class OthelloGame {
 
 	private boolean gameOver() 
 	{
-		if (this.board.notfull() && !blackPlayer.canPlay() && !whitePlayer.canPlay() )
+		if (this.board.notfull() && !this.blackPlayer.canPlay() && !this.whitePlayer.canPlay() )
 			return true;
 		return false;
 			

@@ -36,7 +36,7 @@ public class Board {
 	 * a 2 dimensional table
 	 */
 
-	final static CellType[][] Game = new int[DEFAULT_SIZE][DEFAULT_SIZE];
+	private CellType[][] game; 
 
 	private Cell cell;
 
@@ -44,14 +44,16 @@ public class Board {
 	 * Create a new game Board, in its default configuration
 	 */
 	public Board() {
+		this.game = new CellType[DEFAULT_SIZE][DEFAULT_SIZE];
+		
 		for (int i = 1; i < DEFAULT_SIZE; i++)
 			for (int j = 1; j < DEFAULT_SIZE; j++)
-				Game[i][j] = CellType.EMPTY;
+				this.game[i][j] = CellType.EMPTY;
 
-		Game[4][4] = CellType.WHITE;
-		Game[5][4] = CellType.BLACK;
-		Game[4][5] = CellType.BLACK;
-		Game[5][5] = CellType.WHITE;
+		this.game[4][4] = CellType.WHITE;
+		this.game[5][4] = CellType.BLACK;
+		this.game[4][5] = CellType.BLACK;
+		this.game[5][5] = CellType.WHITE;
 
 	}
 
@@ -62,17 +64,19 @@ public class Board {
 
 		for (int i = 1; i < DEFAULT_SIZE; i++)
 			for (int j = 1; j < DEFAULT_SIZE; j++)
-				if (Game[i][j] == CellType.EMPTY)
+				if (this.game[i][j] == CellType.EMPTY)
 					return true;
 		return false;
 	}
 
 	/**
 	 * @param Game
+	 * Scan the board and for each white cell, checks all directions for a playable cell
 	 * @return A list of cell where the white player can play
+	 * 
 	 */
 
-	public ArrayList<Cell> nextWhiteMoves(int Game[][]) {
+	public ArrayList<Cell> nextWhiteMoves() {
 
 		/**
 		 * A tab of cells
@@ -87,13 +91,13 @@ public class Board {
 			for (int j = 1; j < DEFAULT_SIZE; j++)
 			{
 
-				if (Game[i][j] == CellType.WHITE)
+				if (this.game[i][j] == CellType.WHITE)
 				{
 					/**
 					 * Next left playable cell
 					 */
-					for (int i1 = i - 1; Game[i1][j] == CellType.BLACK && i1 >= 1; i1--)
-						if (Game[i1][j] == CellType.EMPTY)
+					for (int i1 = i - 1; this.game[i1][j] == CellType.BLACK && i1 >= 1; i1--)
+						if (this.game[i1][j] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j);
 							listCell.add(this.cell);
@@ -101,8 +105,8 @@ public class Board {
 					/**
 					 * Next right playable cell
 					 */		
-					for (int i1 = i + 1; Game[i1][j] == CellType.BLACK && i1 <= DEFAULT_SIZE; i1++)
-						if (Game[i1][j] == CellType.EMPTY)
+					for (int i1 = i + 1; this.game[i1][j] == CellType.BLACK && i1 <= DEFAULT_SIZE; i1++)
+						if (this.game[i1][j] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j);
 							listCell.add(this.cell);
@@ -110,8 +114,8 @@ public class Board {
 					/**
 					 * Next down playable cell
 					 */
-					for (int j1 = j - 1; Game[i][j1] == CellType.BLACK && j1 >= 1; j1--)
-						if (Game[i][j1] == CellType.EMPTY)
+					for (int j1 = j - 1; this.game[i][j1] == CellType.BLACK && j1 >= 1; j1--)
+						if (this.game[i][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i, j1);
 							listCell.add(this.cell);
@@ -119,8 +123,8 @@ public class Board {
 					/**
 					 * Next up playable cell
 					 */
-					for (int j1 = j + 1; Game[i][j1] == CellType.BLACK && j1 <= DEFAULT_SIZE; j1++)
-						if (Game[i][j1] == CellType.EMPTY)
+					for (int j1 = j + 1; this.game[i][j1] == CellType.BLACK && j1 <= DEFAULT_SIZE; j1++)
+						if (this.game[i][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i, j1);
 							listCell.add(this.cell);
@@ -128,8 +132,8 @@ public class Board {
 					/**
 					 * Next Up-left playable cell
 					 */
-					for (int i1 = i - 1,j1 = j + 1; Game[i1][j1] == CellType.BLACK && i1 >= 1 && j1<=DEFAULT_SIZE; i1--,j1++)
-						if (Game[i1][j1] == CellType.EMPTY)
+					for (int i1 = i - 1,j1 = j + 1; this.game[i1][j1] == CellType.BLACK && i1 >= 1 && j1<=DEFAULT_SIZE; i1--,j1++)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
@@ -137,8 +141,8 @@ public class Board {
 					/**
 					 * Next Up-right playable cell
 					 */
-					for (int i1 = i + 1,j1 = j + 1; Game[i1][j1] == CellType.BLACK && i1<=DEFAULT_SIZE && j1<=DEFAULT_SIZE; i1++,j1++)
-						if (Game[i1][j1] == CellType.EMPTY)
+					for (int i1 = i + 1,j1 = j + 1; this.game[i1][j1] == CellType.BLACK && i1<=DEFAULT_SIZE && j1<=DEFAULT_SIZE; i1++,j1++)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
@@ -146,8 +150,8 @@ public class Board {
 					/**
 					 * Next down-left playable cell
 					 */
-					for (int i1 = i - 1,j1 = j - 1; Game[i1][j1] == CellType.BLACK && i1 >= 1 && j1>=1; i1--,j1--)
-						if (Game[i1][j1] == CellType.EMPTY)
+					for (int i1 = i - 1,j1 = j - 1; this.game[i1][j1] == CellType.BLACK && i1 >= 1 && j1>=1; i1--,j1--)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
@@ -155,8 +159,8 @@ public class Board {
 					/**
 					 * Next down-right playable cell
 					 */
-					for (int i1 = i + 1,j1 = j - 1; Game[i1][j1] == CellType.BLACK && i1<=DEFAULT_SIZE && j1 >= 1; i1++,j1--)
-						if (Game[i1][j1] == CellType.EMPTY)
+					for (int i1 = i + 1,j1 = j - 1; this.game[i1][j1] == CellType.BLACK && i1<=DEFAULT_SIZE && j1 >= 1; i1++,j1--)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
@@ -172,9 +176,10 @@ public class Board {
 	
 	/**
 	 * @param Game
+	 * Scan the board and for each black cell, checks all directions for a playable cell
 	 * @return A list of cell where the black player can play
 	 */
-	public ArrayList<Cell> nextBlackMoves(int Game[][]) {
+	public ArrayList<Cell> nextBlackMoves() {
 
 		/**
 		 * A list of cells
@@ -189,13 +194,13 @@ public class Board {
 			for (int j = 1; j < DEFAULT_SIZE; j++)
 			{
 
-				if (Game[i][j] == BLACK)
+				if (this.game[i][j] == CellType.BLACK)
 				{
 					/**
 					 * Next left playable cell
 					 */
-					for (int i1 = i - 1; Game[i1][j] == WHITE && i1 >= 1; i1--)
-						if (Game[i1][j] == EMPTY)
+					for (int i1 = i - 1; this.game[i1][j] == CellType.WHITE && i1 >= 1; i1--)
+						if (this.game[i1][j] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j);
 							listCell.add(this.cell);
@@ -203,8 +208,8 @@ public class Board {
 					/**
 					 * Next right playable cell
 					 */		
-					for (int i1 = i + 1; Game[i1][j] == WHITE && i1 <= DEFAULT_SIZE; i1++)
-						if (Game[i1][j] == EMPTY)
+					for (int i1 = i + 1; this.game[i1][j] == CellType.WHITE && i1 <= DEFAULT_SIZE; i1++)
+						if (this.game[i1][j] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j);
 							listCell.add(this.cell);
@@ -212,8 +217,8 @@ public class Board {
 					/**
 					 * Next down playable cell
 					 */
-					for (int j1 = j - 1; Game[i][j1] == WHITE && j1 >= 1; j1--)
-						if (Game[i][j1] == EMPTY)
+					for (int j1 = j - 1; this.game[i][j1] == CellType.WHITE && j1 >= 1; j1--)
+						if (this.game[i][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i, j1);
 							listCell.add(this.cell);
@@ -221,8 +226,8 @@ public class Board {
 					/**
 					 * Next up playable cell
 					 */
-					for (int j1 = j + 1; Game[i][j1] == WHITE && j1 <= DEFAULT_SIZE; j1++)
-						if (Game[i][j1] == EMPTY)
+					for (int j1 = j + 1; this.game[i][j1] == CellType.WHITE && j1 <= DEFAULT_SIZE; j1++)
+						if (this.game[i][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i, j1);
 							listCell.add(this.cell);
@@ -230,8 +235,8 @@ public class Board {
 					/**
 					 * Next Up-left playable cell
 					 */
-					for (int i1 = i - 1,j1 = j + 1; Game[i1][j1] == WHITE && i1 >= 1 && j1<=DEFAULT_SIZE; i1--,j1++)
-						if (Game[i1][j1] == EMPTY)
+					for (int i1 = i - 1,j1 = j + 1; this.game[i1][j1] == CellType.WHITE && i1 >= 1 && j1<=DEFAULT_SIZE; i1--,j1++)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
@@ -239,8 +244,8 @@ public class Board {
 					/**
 					 * Next Up-right playable cell
 					 */
-					for (int i1 = i + 1,j1 = j + 1; Game[i1][j1] == WHITE && i1<=DEFAULT_SIZE && j1<=DEFAULT_SIZE; i1++,j1++)
-						if (Game[i1][j1] == EMPTY)
+					for (int i1 = i + 1,j1 = j + 1; this.game[i1][j1] == CellType.WHITE && i1<=DEFAULT_SIZE && j1<=DEFAULT_SIZE; i1++,j1++)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
@@ -248,8 +253,8 @@ public class Board {
 					/**
 					 * Next down-left playable cell
 					 */
-					for (int i1 = i - 1,j1 = j - 1; Game[i1][j1] == WHITE && i1 >= 1 && j1>=1; i1--,j1--)
-						if (Game[i1][j1] == EMPTY)
+					for (int i1 = i - 1,j1 = j - 1; this.game[i1][j1] == CellType.WHITE && i1 >= 1 && j1>=1; i1--,j1--)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
@@ -257,8 +262,8 @@ public class Board {
 					/**
 					 * Next down-right playable cell
 					 */
-					for (int i1 = i + 1,j1 = j - 1; Game[i1][j1] == WHITE && i1<=DEFAULT_SIZE && j1 >= 1; i1++,j1--)
-						if (Game[i1][j1] == EMPTY)
+					for (int i1 = i + 1,j1 = j - 1; this.game[i1][j1] == CellType.WHITE && i1<=DEFAULT_SIZE && j1 >= 1; i1++,j1--)
+						if (this.game[i1][j1] == CellType.EMPTY)
 						{
 							this.cell = new Cell(i1, j1);
 							listCell.add(this.cell);
