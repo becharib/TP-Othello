@@ -63,9 +63,37 @@ public class OthelloGame {
 
 	private boolean gameOver() 
 	{
-		if (this.board.notfull() && !this.blackPlayer.canPlay() && !this.whitePlayer.canPlay() )
+		if (this.board.notfull() && !this.whiteCanPlay() && !this.blackCanPlay() )
+			return true;
+		if (!this.board.notfull())
 			return true;
 		return false;
 			
 	}
+
+	
+	
+	/**
+	 * Tells if the black player can play
+	 * @return
+	 */
+	private boolean blackCanPlay() {
+		if (this.board.nextBlackMoves().size() != 0)
+			return true;
+		else	
+			return false;
+	}
+	
+	/**
+	 * Tells if the white player can play
+	 * @return
+	 */
+	private boolean whiteCanPlay() {
+		if (this.board.nextWhiteMoves().size() != 0)
+			return true;
+		else	
+			return false;
+	}
+
+
 }

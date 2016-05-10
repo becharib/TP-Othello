@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**		 1  2  3  4  5  6  7  8
  * 		________________________
@@ -69,6 +70,14 @@ public class Board {
 		return false;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * @param Game
 	 * Scan the board and for each white cell, checks all directions for a playable cell
@@ -76,12 +85,12 @@ public class Board {
 	 * 
 	 */
 
-	public ArrayList<Cell> nextWhiteMoves() {
+	public Set<Cell> nextWhiteMoves() {
 
 		/**
 		 * A tab of cells
 		 */
-		ArrayList<Cell> listCell = new ArrayList<Cell>();
+		Set<Cell> listCell = new HashSet<Cell>();
 		
 		/**
 		 * Scan the board and for each white cell, checks all directions for a playable cell
@@ -179,12 +188,12 @@ public class Board {
 	 * Scan the board and for each black cell, checks all directions for a playable cell
 	 * @return A list of cell where the black player can play
 	 */
-	public ArrayList<Cell> nextBlackMoves() {
+	public Set<Cell> nextBlackMoves() {
 
 		/**
 		 * A list of cells
 		 */
-		ArrayList<Cell> listCell = new ArrayList<Cell>();
+		Set<Cell> listCell = new HashSet<Cell>();
 		
 		/**
 		 * Scan the board and for each black cell, checks all directions for a playable cell

@@ -8,6 +8,8 @@
  */
 public class Cell {
 	
+	public CellType cellState;
+	
 	/**
 	 * easting
 	 */
@@ -24,6 +26,7 @@ public class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
+        
     }
 
 

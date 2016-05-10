@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-
-
 public class Player {
 	
 	
@@ -9,11 +6,9 @@ public class Player {
 	 */
 	private String color;
 	
-	
-	ArrayList<Cell> nextWhiteMoves = Board.nextWhiteMoves();
-	
+		
 	/**
-	 * 
+	 * the color of the player
 	 * @param color
 	 */
 	public Player(String color) {
@@ -25,17 +20,24 @@ public class Player {
 	 */
 	public String getColor() {
 		return this.color;
+	
 	}
 
+	
+
+
+
+
+
 
 
 
 
 		
 		
-		return false;
 		
-	}
+		
+	
 
 
 

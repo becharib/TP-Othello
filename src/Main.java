@@ -10,7 +10,14 @@ public class Main {
 	 * launch a new game
 	 */
 	public static void main(String[] args) {
-		new OthelloGame().play();
-
+		OthelloGame othellogame = new OthelloGame();
+		othellogame.play();	
+		
 	}
+	
+	
+	
+	
+	
+
 }
