@@ -1,6 +1,12 @@
+
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.awt.event.*;
+import java.awt.*;
 /**		 1  2  3  4  5  6  7  8
  * 		________________________
  * 1	|0| 0| 0| 0| 0| 0| 0| 0|
@@ -25,14 +31,18 @@ import java.util.Set;
  * It's a board 8*8 of pawns
  *
  */
-public class Board {
+public class Board extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * default size of the board
 	 */
 
 	private static final int DEFAULT_SIZE = 8;
-
+	public static final int SpaceSize = 40;
 	/**
 	 * a 2 dimensional table
 	 */
@@ -41,10 +51,31 @@ public class Board {
 
 	private Cell cell;
 
+	
 	/**
 	 * Create a new game Board, in its default configuration
 	 */
 	public Board() {
+		super();
+		reset();
+		addMouseListener(
+				new MouseAdapter()
+				{
+					public void mousePressed(MouseEvent e)
+					{
+						moveMade(e.getX() / SpaceSize, e.getY() / SpaceSize);
+					}
+				}
+						);
+		}
+
+	
+	
+	/**
+	 * set the board in its default configuration
+	 */
+	public void reset()
+	{
 		this.game = new CellType[DEFAULT_SIZE][DEFAULT_SIZE];
 		
 		for (int i = 1; i < DEFAULT_SIZE; i++)
@@ -55,9 +86,12 @@ public class Board {
 		this.game[5][4] = CellType.BLACK;
 		this.game[4][5] = CellType.BLACK;
 		this.game[5][5] = CellType.WHITE;
-
 	}
-
+	
+	
+	
+	
+	
 	/**
 	 * @return A boolean that tells if the board is full or not
 	 */
@@ -71,7 +105,21 @@ public class Board {
 	}
 
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 * return the type of the cell of coordinates x and y
+	 */
+	public CellType getCellType(int x, int y) {
+		return this.game[x][y];
+		
+	}
 	
+	public void setCellType(int x, int y,CellType type) {
+		this.game[x][y]=type;
+	}
 	
 	
 	
