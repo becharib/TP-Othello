@@ -18,6 +18,10 @@ import java.awt.*;
  * 7    |0| 0| 0| 0| 0| 0| 0| 0|
  * 8	|0| 0| 0| 0| 0| 0| 0| 0|
  * 		-----------------------
+ * 
+ * 
+ * 
+ * 
  * The model of the beginning of the game
  * 
  */
@@ -33,15 +37,11 @@ import java.awt.*;
  */
 public class Board extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * default size of the board
+	/*
+	 * default size of the board, number of columns and rows +1
 	 */
 
-	private static final int DEFAULT_SIZE = 8;
+	private static final int DEFAULT_SIZE = 9;
 	public static final int SpaceSize = 40;
 	/**
 	 * a 2 dimensional table
@@ -54,6 +54,7 @@ public class Board extends JPanel {
 	
 	/**
 	 * Create a new game Board, in its default configuration
+	 * sets the actions made with the mouse
 	 */
 	public Board() {
 		super();
@@ -63,7 +64,7 @@ public class Board extends JPanel {
 				{
 					public void mousePressed(MouseEvent e)
 					{
-						moveMade(e.getX() / SpaceSize, e.getY() / SpaceSize);
+						
 					}
 				}
 						);
@@ -88,8 +89,24 @@ public class Board extends JPanel {
 		this.game[5][5] = CellType.WHITE;
 	}
 	
-	
-	
+	/**
+	 *  display a raw board
+	 *  this was for test purposes
+	 */
+	public void display(){
+		String cells=" ";
+		System.out.println("    1      2     3     4     5     6     7     8");
+		System.out.println("  ###############################################");
+		for (int i = 1; i < DEFAULT_SIZE; i++) {
+			for (int j = 1; j < DEFAULT_SIZE; j++) {
+				cells=cells+" "+this.game[i][j]; }
+		System.out.println(cells); 
+		cells= " ";
+		System.out.println("\n");
+		
+		
+		}
+	}
 	
 	
 	/**
@@ -116,13 +133,25 @@ public class Board extends JPanel {
 		return this.game[x][y];
 		
 	}
-	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @param type
+	 * set the cell of coordinates x and y
+	 */
 	public void setCellType(int x, int y,CellType type) {
 		this.game[x][y]=type;
 	}
 	
 	
-	
+	/**
+	 * Checks if the cell of coordinates x and y, chosen by the white player is playable
+	 */
+	public boolean whiteMove(int x, int y) {
+		Cell cell = new Cell(x,y);
+		return(nextWhiteMoves().contains(cell));
+		}
 	
 	
 	
@@ -231,6 +260,18 @@ public class Board extends JPanel {
 	}
 
 	
+	
+	
+	/**
+	 * Checks if the cell of coordinates x and y, chosen by the black player is playable
+	 */
+	public boolean blackMove(int x, int y) {
+		Cell cell = new Cell(x,y);
+		return(nextBlackMoves().contains(cell));
+		}
+	
+	
+	
 	/**
 	 * @param Game
 	 * Scan the board and for each black cell, checks all directions for a playable cell
@@ -333,8 +374,16 @@ public class Board extends JPanel {
 
 	}
 
-	
-	
+	/**
+	 * 
+	 * @param column
+	 * @param row
+	 * Changes the color of cells on the board depending of the position of all the cells
+	 */
+	public void swapColors (int column, int row) 
+	{
+		//TODO: everything
+	}
 	
 	
 	

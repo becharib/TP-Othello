@@ -4,11 +4,14 @@
 
 /**
  * @author becharib
- *
+ *It is a cell with coordinates and a state: black, white or empty
  */
 public class Cell {
-	
+	/**
+	 * the  state of the cell
+	 */
 	public CellType cellState;
+	
 	
 	/**
 	 * easting

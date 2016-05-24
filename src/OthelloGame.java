@@ -27,8 +27,8 @@ public class OthelloGame {
 	public OthelloGame() 
 	{
 		this.board = new Board();
-
-		
+		this.board.reset();
+		this.board.display();
 	}
 
 	/**
@@ -54,7 +54,13 @@ public class OthelloGame {
 	{
 	while (!this.gameOver())
 	{
+		
+		
 		this.player=black;
+		//moveMade();
+		
+		
+		
 	}	
 		
 		
@@ -63,7 +69,12 @@ public class OthelloGame {
 	}
 
 	
-	
+	/**
+	 * 
+	 * @param column
+	 * @param row
+	 * The player choose a cell, and it changes the board depending on it
+	 */
 	private void moveMade(int column, int row)
 	{
 		CellType type;
@@ -75,14 +86,18 @@ public class OthelloGame {
 			type=CellType.WHITE;
 			if (this.gameOver())
 			{
-			 	// The game is over, and somebody won.
+			 	/**
+			 	 * The game is over, and somebody won.
+			 	 */
 
 				JOptionPane.showMessageDialog(null, this.player + " already won!!!", 
 					"Winner", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
 			
-			// Make sure click event was within the board.
+			/**
+			 * Make sure click event was within the board.
+			 */
 			else if (column <= 2 && column >= 0 && row <= 2 && row >= 0)
 			{
 				
@@ -92,17 +107,25 @@ public class OthelloGame {
 						"You must choose an empty square", 
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
-				else
+				else if (this.board.whiteMove(column, row))
 				{
-					// Add the X or O to the board.
-					this.board.setCellType(column, row, type);
+					/**
+					 *  Add the cell to the board.
+					 */
+					this.board.setCellType(column,row, type);
+					//TODO: add swapColors method
 					
-					// Since a move was made we need to refresh the display.
-					repaint();
+					/**
+					 *  Since a move was made we need to refresh the display.
+					 *  Not made yet
+					 */
+					//TODO: repaint();
 
-					gameOver = checkForWin(turn);
 					
-					// Somebody won.
+					
+					/**
+					 *  Somebody won.
+					 */
 					if (this.gameOver())
 					{
 						JOptionPane.showMessageDialog(null, this.player + " wins!!!", 
@@ -110,7 +133,9 @@ public class OthelloGame {
 					}
 					
 					
-					// Keep playing.
+					/**
+					 *  Keep playing.
+					 */
 					else
 					{
 						if (this.player == black) this.player = white; 
@@ -131,7 +156,9 @@ public class OthelloGame {
 			type=CellType.BLACK;
 			if (this.gameOver())
 			{
-			 	// The game is over, and somebody won.
+			 	/**
+			 	 *  The game is over, and somebody won.
+			 	 */
 
 				JOptionPane.showMessageDialog(null, this.player + " already won!!!", 
 					"Winner", JOptionPane.INFORMATION_MESSAGE);
@@ -148,17 +175,24 @@ public class OthelloGame {
 						"You must choose an empty square", 
 						"Error", JOptionPane.ERROR_MESSAGE);
 				}
-				else
+				else if (this.board.blackMove(column, row))
 				{
-					// Add the X or O to the board.
+					/**
+					 * Add the cell to the board.
+					 */
 					this.board.setCellType(column, row, type);
+					//TODO: add swapColors method
 					
-					// Since a move was made we need to refresh the display.
-					repaint();
+					/**
+					 *  Since a move was made we need to refresh the display.
+					 */
+					//TODO: repaint();
 
-					gameOver = checkForWin(turn);
 					
-					// Somebody won.
+					
+					/**
+					 *  Somebody won.
+					 */
 					if (this.gameOver())
 					{
 						JOptionPane.showMessageDialog(null, this.player + " wins!!!", 
@@ -166,7 +200,9 @@ public class OthelloGame {
 					}
 					
 					
-					// Keep playing.
+					/**
+					 *  Keep playing.
+					 */
 					else
 					{
 						if (this.player == black) this.player = white; 
@@ -180,9 +216,10 @@ public class OthelloGame {
 	
 	
 	
-	
-	
-	
+	/**
+	 * tells if the game is over or not
+	 * @return
+	 */
 	public boolean gameOver() 
 	{
 		if (this.board.notfull() && !this.whiteCanPlay() && !this.blackCanPlay() )
